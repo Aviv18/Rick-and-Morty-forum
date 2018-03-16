@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+}
+
+
+
+<div class="container">
+    <img src="http://www.metalsucks.net/wp-content/uploads/2017/09/rickandmorty.jpeg" id="img_home" />
+</div>
+
+<div class="container">
+    <h1>Welcome to rick and morty forum!</h1>
+    <h4>In this forum you can discuss about you rick or morty, ask questions and even find new rick or morty!</h4>
+    <h4>What are you waiting for? Go exploring the forum right now!</h4>
+    <input class="btn btn-success" id="home_btn" type="button" value="Explore Forum  &raquo" onclick="location=href='@Url.Action("Threads","Thread")'" />
+</div>
+
+
+

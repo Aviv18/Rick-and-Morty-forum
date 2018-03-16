@@ -1,0 +1,120 @@
+﻿@using Project.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <style type="text/css">
+        #img_home {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        
+        #home_jumbo {
+            background-color: black;
+        }
+
+        #rick_home {
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: 1500px;
+            height:410px;
+        }
+
+        #morty_home {
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: 1500px;
+            height: 410px;
+        }
+
+        #WritePost {
+            object-fit: cover;
+            max-width: 100%;
+            max-height: 100%;
+            width: 1500px;
+            height: 410px;
+        }
+        #newPostPanel {
+            background-image: none;
+            background-color: #3A373B;
+           
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+    <div  class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div  class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Rick and morty forum", "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Threads", "Threads", "Thread")</li>
+                    <li>@Html.ActionLink("Write Post", "WritePost", "Thread")</li>
+                </ul>
+                @{
+                    SuperUser U = Session["user"] as SuperUser;
+                }
+
+                @if (U == null)
+                {
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("login", "Login_Logout")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a href="@Url.Action("SignOut", "Login_Logout")"><span class="glyphicon glyphicon-log-out"></span></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                <li><a href="@Url.Action("userHomePage","Home")"> Welcome @U.Username</a></li>
+                </ul>
+                
+                }
+               
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer class="container">
+            <p onclick="play()">&copy; @DateTime.Now.Year - Amit & Aviv Web Application</p>
+            @*WABBA LABBA DUB DUB*@
+            <audio id="easteregg" hidden="hidden" src="http://amitwati.000webhostapp.com/RAM.mp3" preload="auto" controls>
+                <p>If you are reading this, it is because your browser does not support the audio element.</p>
+            </audio>
+        </footer>
+    </div>
+ 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        function play() {
+            document.getElementById("easteregg").autoplay = 'autoplay';
+    }
+    </script>
+</body>
+
+
+</html>
