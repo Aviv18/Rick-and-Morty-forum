@@ -1,0 +1,37 @@
+﻿<div class="container">
+    <img src="~/Pictures/write-post.png" id="WritePost" />
+</div>
+
+<div style="padding-top:10px;" class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center" id="newPostPanel">
+            <h2>Create a new Post</h2>
+        </div>
+        @if (Session["user"] != null)
+        {
+        <form id="NewPost" action="new_thread" method="post">
+            <div class="panel-body">
+                <label>Title:</label>
+                <input id="TitleInput" type="text" class="form-control" onkeyup="toggleButton(this,'body','PostNewThread');" name="t_title" />
+                <label style="padding-top:10px;">Body:</label>
+                <textarea form="NewPost" class="form-control form-group"
+                          wrap="soft" rows="20" style="min-width: 100%" id="body" onkeyup="toggleButton(this,'TitleInput','PostNewThread');" name="t_body"></textarea>
+                <input id="PostNewThread" type="submit" class="btn btn-success" value="Submit" disabled='disabled' />
+            </div>
+        </form>
+        }
+        else
+        {
+        <div class="panel-footer text-center">
+            <h4 style="color:red;"><b>*** Please log in or sign up in order to write new post ***</b></h4>
+        </div>
+        }
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function toggleButton(ref, txtid, bttnID) {
+        document.getElementById(bttnID).disabled = ((ref.value !== ref.defaultValue && document.getElementById(txtid).value !== document.getElementById(txtid).defaultValue) ? false : true);
+    }
+</script>
